@@ -2,7 +2,7 @@ FROM python:2-slim
 
 EXPOSE 3000 22
 ENV PASSWD="123"
-COPY myapp.py /root
+COPY myapp.py /root									
 
 RUN pip install Flask && \
 	apt-get update && \
@@ -18,15 +18,3 @@ RUN pip install Flask && \
 ENTRYPOINT python /root/myapp.py && \
 			service ssh start 
 		 
-
-
-
-
-# docker build -t serg .
-#docker run -it -d  -p 3000:3000 -p  2222:22 --name Serg serg
-#docker exec Serg service ssh start 
-# ssh-copy-id  root@192.168.99.100 -p 2222
-
-#docker exec -it Serg /bin/bash
-#http://192.168.99.100:3000/hello
-

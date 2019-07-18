@@ -2,17 +2,17 @@
   become: yes
   become_method: sudo
   tasks:
-    - name: install packages
+    - name: install packages            # скачиваем пакеты на сервера группы web
       apt: name={{item}} state=present
       with_items:
             - python-dev  
             - vim
-
-    - name: Starting OpenSSH Server
+    - name: Starting OpenSSH Server    # перезапускаем ssh
       service: name=ssh state=restarted
+
 - hosts: web
   tasks:
-      - name: get url
+      - name: get url     # ищем слово Hello на нашем сайте
         get_url:
             url: http://{{ansible_host}}:3000
             dest: /tmp/index.html

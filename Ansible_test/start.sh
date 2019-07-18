@@ -9,7 +9,7 @@ ssh-keygen # генерируем ключ для создания кей-пар
 ssh-copy-id  root@192.168.99.100 -p 2222 # создаем кей-пару
 
 #
-#  ROOT PASSWORD 123ш
+#  ROOT PASSWORD 123
 #
 
 

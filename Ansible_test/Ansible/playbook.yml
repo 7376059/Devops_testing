@@ -1,0 +1,24 @@
+- hosts: web
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: install packages
+      apt: name={{item}} state=present
+      with_items:
+            - python-dev  
+            - vim
+
+    - name: Starting OpenSSH Server
+      service: name=ssh state=restarted
+- hosts: web
+  tasks:
+      - name: get url
+        get_url:
+            url: http://{{ansible_host}}:3000
+            dest: /tmp/index.html
+      - name: read html
+        shell: cat /tmp/index.html
+        register: html_contents
+      - name: check_html
+        when: html_contents.stdout.find('Hello') != -1
+        debug: msg="Success!"
